@@ -1,6 +1,189 @@
 import random
-
+ChocoRobo_Fixed_Health = int(1654)
+Kit_Fixed_Health = int(1237)
+MatchCount = int(0)
+WinMatch = int(0)
+TrophyCount = int(0)
+TrophyMin2 = int(2)
+TrophyMin3 = int(3)
+Coins = int(1000)
+Gems = int(0)
+Upgrade = int(0)
+Drone = int(0)
+Solo = int(0)
+Beat_the_Boss = int(0)
+Kit_Upgrade = int(0)
+ChocoRobo_Upgrade = False
+# Player Variables
+# Opponent
+OpponentHealth = int(2800)
+Opponent_Protect = int(0)
+OpponentDam = int(100)
+OpponentSpecial = int(300)
+# Kit
+# Verify
+Kit_Kick_Times = int(0)
+Kit_Gun_Times = int(0)
+Kit_Heal_Times = int(0)
+# Battle
+AttackHealth = int(150)
+HealHealth = int(110)
+GunShotHealth = int(250)
+Kickhealth = int(230)
+BaseHealth = int(1237)
+Kit_Unlock = int(0)
+Kit_Select = int(0)
+Kit_Trophies = int(0)
+# ChocoRobo
+# Verify
+ChocoRobo_Attack_Times = int(0)
+ChocoRobo_Spin_Times = int(0)
+ChocoRobo_Heal_Times = int(0)
+# Battle
+ChocoRobo = int(0)
+Select_ChocoRobo = int(1)
+ChocoRobo_BaseHealth = 1654
+ChocoRobo_Attack = 170
+ChocoRobo_Heal = 130
+ChocoRobo_Spin = 300
+CRobo_Trophies = int(0)
+CRobo_Unlock = int(0)
+# Marg
+Marg = int(0)
+Marg_BaseHealth = (3500)
+Marg_Select = int(0)
+Marg_Punch = int(75*2)
+Marg_Defend = int(100)
+Marg_Supplex = int(500)
+Marg_Trophies = int(0)
+Marg_Unlock = int(0)
+# Screwbot
+ScrewBot_Fixed_Health = int(1476)
+ScrewBot_BaseHealth = int(1476)
+ScrewBot_Select = int(0)
+ScrewBot = int(1)
+ScrewBot_Attack = int(130)
+ScrewBot_Spotted = int(200)
+Damage_Reduction = int(70)
+Spotted = int(0)
+Spotted_DamageBoost = int(90)
+ScrewBot_Trophies = int(0)
+ScrewBot_DefensiveShield = int(70)
+# Boss
+Boss_Attack = int(300)
+Bad_Boss_Health = int(10000)
+Total_Boss_Health = int(10000)
 # Functions
+def Profile():
+    print("ChocoRobo Trophies : ", CRobo_Trophies)
+    print("Kit Trophies : ", Kit_Trophies)
+    print("Matches : ",MatchCount)
+    print("Wins : ", WinMatch)
+    print("Total trophies : ", TrophyCount)
+    print("Coins : ", Coins)
+def Rules():
+    print("Your Code must contain '?' along with code ex :- ?coins etc")
+    print("Your Code must be in lowercase")
+    print("Your if bug contact us by telling in NFUM")
+    print("Enjoy our Game Daily or Weekly Maintenance Break")
+    print("If you need help for commands type ?help")    
+def Win_Match():
+    print("Total wins : ", WinMatch)
+# Battle Command with other players, declared function for different players
+def ChocoRobo_Battle():
+    OpponentHealth = 1200
+    ChocoRobo_BaseHealth = 1654
+    print("Opponent Health : ", OpponentHealth)
+    print("BaseHealth : ", ChocoRobo_Fixed_Health)
+    print("Commands to Fight with ChocoRobo")
+    print("1. Attack")
+    print("2. Heal")
+    print("3. Spin ( Special Attack ) ")
+    k = 0
+    while k < 6:
+        ChoiceFight = int(input())
+        if ChoiceFight == 1:
+            OpponentHealth = OpponentHealth - ChocoRobo_Attack
+            print("Opponent health = ", OpponentHealth, "-", ChocoRobo_Attack)
+            print("Your Health = ", ChocoRobo_BaseHealth)
+            if OpponentHealth < 0:
+                ChocoRobo_BaseHealth = ChocoRobo_Fixed_Health
+                OpponentHealth = 1200
+                print("You wins")
+                CRobo_Trophies += 8
+                WinMatch = int(WinMatch + 1)
+                TrophyCount = int(TrophyCount + 8)
+                Tokens = int(Tokens + 50)
+                Coins = int(Coins + 100)
+                break
+            elif ChocoRobo_BaseHealth < 0:
+                ChocoRobo_BaseHealth = ChocoRobo_Fixed_Health
+                print("Opponent wins")
+                print("Better luck next time")
+                CRobo_Trophies += 3
+                Tokens = int(Tokens + 20)
+                break
+        elif ChoiceFight == 2:
+                print("Healing.........")
+                ChocoRobo_BaseHealth = ChocoRobo_BaseHealth + HealHealth
+                print("Opponent health = ", OpponentHealth)
+                print("Your health = ", ChocoRobo_BaseHealth, "+", ChocoRobo_Heal)
+                if OpponentHealth < 0:
+                    ChocoRobo_BaseHealth = ChocoRobo_Fixed_Health
+                    OpponentHealth = 1200
+                    print("You wins")
+                    CRobo_Trophies += 8
+                    WinMatch = int(WinMatch + 1)
+                    TrophyCount = int(TrophyCount + 8)
+                    Tokens = int(Tokens + 50)
+                    Coins = int(Coins + 100)
+                    break
+                elif ChocoRobo_BaseHealth < 0:
+                    ChocoRobo_BaseHealth = ChocoRobo_Fixed_Health
+                    print("Opponent wins")
+                    print("Better luck next time")
+                    CRobo_Trophies += 3
+                    Tokens = int(Tokens + 20)
+                    break
+        elif ChoiceFight == 3:
+            if ChocoRobo_Heal_Times == 1:
+                ChocoRobo_Heal_Times -= 1
+            else:
+                ChocoRobo_Spin_Times += 1
+                OpponentHealth = OpponentHealth - ChocoRobo_Spin
+                print("Opponent health = ", OpponentHealth, "-", ChocoRobo_Spin)
+                print("Your Health = ", ChocoRobo_BaseHealth)
+                if OpponentHealth < 0:
+                    ChocoRobo_BaseHealth = ChocoRobo_Fixed_Health
+                    OpponentHealth = 1200
+                    print("You wins")
+                    CRobo_Trophies += 8
+                    WinMatch = int(WinMatch + 1)
+                    TrophyCount = int(TrophyCount + 8)
+                    Tokens = int(Tokens + 50)
+                    Coins = int(Coins + 100)
+                    break
+                elif ChocoRobo_BaseHealth < 0:
+                    ChocoRobo_BaseHealth = ChocoRobo_Fixed_Health
+                    print("Opponent wins")
+                    print("Better luck next time")
+                    CRobo_Trophies += 3
+                    Tokens = int(Tokens + 20)
+                    break
+        print("***************************************************************")
+        print("***************************************************************")
+        print("Opponents Turn")
+        Opponent_Turn = random.randrange(2, 4)
+        if Opponent_Turn == 2:
+            print("He attacks")
+            ChocoRobo_BaseHealth = ChocoRobo_BaseHealth - OpponentDam
+            print("Opponent health = ", OpponentHealth)
+            print('Your Health = ', ChocoRobo_BaseHealth, '-', OpponentDam)
+        else:
+            print("He Used Oppo_Special")
+            ChocoRobo_BaseHealth = ChocoRobo_BaseHealth - OpponentSpecial
+            print("Opponent health = ", OpponentHealth)
+            print('Your Health = ', ChocoRobo_BaseHealth, '-', OpponentSpecial)    
 # Other Command rather than Battle command
 def Profile():
     print("ChocoRobo Trophies : ", CRobo_Trophies)
