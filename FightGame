@@ -33,7 +33,7 @@ GunShotHealth = int(250)
 Kickhealth = int(230)
 BaseHealth = int(1237)
 Kit_Unlock = int(1)
-Kit_Select = int(0)
+Kit_Select = int(1)
 Kit_Trophies = int(0)
 # ChocoRobo
 # Verify
@@ -292,6 +292,7 @@ print("=========================================================================
 print("Hi Welcome to Fighting Game 1v1 battle")
 print("If you need help please type ?rules for more info")
 print("Your Starting player is Kit!!!! HE is the beginner player")
+print("Use ?player command and select Kit to play battles")
 a = 1
 while a < 8:
     Choice = input(">> ")
@@ -336,7 +337,7 @@ while a < 8:
         OpponentHealth = 1200
         if Kit_Select == 1:
             BaseHealth = 1237
-            OpponentHealth = 1200
+            OpponentHealth = 1000
             print("Your Opponent Health = ", OpponentHealth)
             print("Your Health = ", BaseHealth)
             print("Commands to fight with Kit")
@@ -360,11 +361,13 @@ while a < 8:
                             TrophyCount = int(TrophyCount + 8)
                             Tokens = int(Tokens + 50)
                             Coins = int(Coins + 100)
+                            print("𝐃𝐨 𝐲𝐨𝐮 𝐰𝐚𝐧𝐭 𝐭𝐨 𝐩𝐥𝐚𝐲 𝐚𝐠𝐚𝐢𝐧?")
                             break
                         elif BaseHealth < 0:
                             BaseHealth = Kit_Fixed_Health
                             print("Opponent wins")
                             print("Better luck next time")
+                            print("𝐃𝐨 𝐲𝐨𝐮 𝐰𝐚𝐧𝐭 𝐭𝐨 𝐩𝐥𝐚𝐲 𝐚𝐠𝐚𝐢𝐧?")
                             Kit_Trophies += 3
                             Tokens = int(Tokens + 20)
                             break
@@ -388,11 +391,13 @@ while a < 8:
                             TrophyCount = int(TrophyCount + 8)
                             Tokens = int(Tokens + 50)
                             Coins = int(Coins + 100)
+                            print("𝐃𝐨 𝐲𝐨𝐮 𝐰𝐚𝐧𝐭 𝐭𝐨 𝐩𝐥𝐚𝐲 𝐚𝐠𝐚𝐢𝐧?")
                             break
                         elif BaseHealth < 0:
                             BaseHealth = Kit_Fixed_Health
                             print("Opponent wins")
                             print("Better luck next time")
+                            print("𝐃𝐨 𝐲𝐨𝐮 𝐰𝐚𝐧𝐭 𝐭𝐨 𝐩𝐥𝐚𝐲 𝐚𝐠𝐚𝐢𝐧?")
                             Kit_Trophies += 3
                             Tokens = int(Tokens + 20)
                             break
@@ -415,11 +420,13 @@ while a < 8:
                             TrophyCount = int(TrophyCount + 8)
                             Tokens = int(Tokens + 50)
                             Coins = int(Coins + 100)
+                            print("𝐃𝐨 𝐲𝐨𝐮 𝐰𝐚𝐧𝐭 𝐭𝐨 𝐩𝐥𝐚𝐲 𝐚𝐠𝐚𝐢𝐧?")
                             break
                         elif BaseHealth < 0:
                             BaseHealth = Kit_Fixed_Health
                             print("Opponent wins")
                             print("Better luck next time")
+                            print("𝐃𝐨 𝐲𝐨𝐮 𝐰𝐚𝐧𝐭 𝐭𝐨 𝐩𝐥𝐚𝐲 𝐚𝐠𝐚𝐢𝐧?")
                             Kit_Trophies += 3
                             Tokens = int(Tokens + 20)
                             break
@@ -442,11 +449,13 @@ while a < 8:
                             TrophyCount = int(TrophyCount + 8)
                             Tokens = int(Tokens + 50)
                             Coins = int(Coins + 100)
+                            print("𝐃𝐨 𝐲𝐨𝐮 𝐰𝐚𝐧𝐭 𝐭𝐨 𝐩𝐥𝐚𝐲 𝐚𝐠𝐚𝐢𝐧?")
                             break
                         elif BaseHealth < 0:
                             BaseHealth = Kit_Fixed_Health
                             print("Opponent wins")
                             print("Better luck next time")
+                            print("𝐃𝐨 𝐲𝐨𝐮 𝐰𝐚𝐧𝐭 𝐭𝐨 𝐩𝐥𝐚𝐲 𝐚𝐠𝐚𝐢𝐧?")
                             Kit_Trophies += 3
                             Tokens = int(Tokens + 20)
                             break
