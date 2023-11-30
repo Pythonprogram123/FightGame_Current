@@ -101,13 +101,18 @@ def Kit_Battle():
                         WinMatch = int(WinMatch + 1)
                         TrophyCount = int(TrophyCount + 8)
                         Coins = int(Coins + 100)
-                        print("𝐃𝐨 𝐲𝐨𝐮 𝐰𝐚𝐧𝐭 𝐭𝐨 𝐩𝐥𝐚𝐲 𝐚𝐠𝐚𝐢𝐧?")
+                        Play_Again = input("𝐃𝐨 𝐲𝐨𝐮 𝐰𝐚𝐧𝐭 𝐭𝐨 𝐩𝐥𝐚𝐲 𝐚𝐠𝐚𝐢𝐧?( Yes or no ) :- ")
+                        if Play_Again == "Yes":
+                            Kit_Battle()
+                            Kit_Battle()
                         break
                     elif BaseHealth < 0:
                         BaseHealth = Kit_Fixed_Health
                         print("Opponent wins")
                         print("Better luck next time")
-                        print("𝐃𝐨 𝐲𝐨𝐮 𝐰𝐚𝐧𝐭 𝐭𝐨 𝐩𝐥𝐚𝐲 𝐚𝐠𝐚𝐢𝐧?")`
+                        Play_Again = input("𝐃𝐨 𝐲𝐨𝐮 𝐰𝐚𝐧𝐭 𝐭𝐨 𝐩𝐥𝐚𝐲 𝐚𝐠𝐚𝐢𝐧?( Yes or no ) :- ")
+                        if Play_Again == "Yes":
+                            Kit_Battle()
                         Kit_Trophies += 3
                         break
             elif ChoiceFight == 2:
@@ -124,13 +129,17 @@ def Kit_Battle():
                         WinMatch = int(WinMatch + 1)
                         TrophyCount = int(TrophyCount + 8)
                         Coins = int(Coins + 100)
-                        print("𝐃𝐨 𝐲𝐨𝐮 𝐰𝐚𝐧𝐭 𝐭𝐨 𝐩𝐥𝐚𝐲 𝐚𝐠𝐚𝐢𝐧?")
+                        Play_Again = input("𝐃𝐨 𝐲𝐨𝐮 𝐰𝐚𝐧𝐭 𝐭𝐨 𝐩𝐥𝐚𝐲 𝐚𝐠𝐚𝐢𝐧?( Yes or no ) :- ")
+                        if Play_Again == "Yes":
+                            Kit_Battle()
                         break
                     elif BaseHealth < 0:
                         BaseHealth = Kit_Fixed_Health
                         print("Opponent wins")
                         print("Better luck next time")
-                        print("𝐃𝐨 𝐲𝐨𝐮 𝐰𝐚𝐧𝐭 𝐭𝐨 𝐩𝐥𝐚𝐲 𝐚𝐠𝐚𝐢𝐧?")
+                        Play_Again = input("𝐃𝐨 𝐲𝐨𝐮 𝐰𝐚𝐧𝐭 𝐭𝐨 𝐩𝐥𝐚𝐲 𝐚𝐠𝐚𝐢𝐧?( Yes or no ) :- ")
+                        if Play_Again == "Yes":
+                            Kit_Battle()
                         Kit_Trophies += 3
                         break
             elif ChoiceFight == 3:
@@ -147,11 +156,17 @@ def Kit_Battle():
                         TrophyCount = int(TrophyCount + 8)
                         Coins = int(Coins + 100)
                         Play_Again = input("𝐃𝐨 𝐲𝐨𝐮 𝐰𝐚𝐧𝐭 𝐭𝐨 𝐩𝐥𝐚𝐲 𝐚𝐠𝐚𝐢𝐧?( Yes or no ) :- ")
+                        if Play_Again == "Yes":
+                            Kit_Battle()
+                        
                     elif BaseHealth < 0:
                         BaseHealth = Kit_Fixed_Health
                         print("Opponent wins")
                         print("Better luck next time")
-                        print("𝐃𝐨 𝐲𝐨𝐮 𝐰𝐚𝐧𝐭 𝐭𝐨 𝐩𝐥𝐚𝐲 𝐚𝐠𝐚𝐢𝐧?")
+                        Play_Again = input("𝐃𝐨 𝐲𝐨𝐮 𝐰𝐚𝐧𝐭 𝐭𝐨 𝐩𝐥𝐚𝐲 𝐚𝐠𝐚𝐢𝐧?( Yes or no ) :- ")
+                        if Play_Again == "Yes":
+                            Kit_Battle()
+                        
                         Kit_Trophies += 3
                         break
             elif ChoiceFight == 4:
@@ -167,13 +182,17 @@ def Kit_Battle():
                         WinMatch = int(WinMatch + 1)
                         TrophyCount = int(TrophyCount + 8)
                         Coins = int(Coins + 100)
-                        print("𝐃𝐨 𝐲𝐨𝐮 𝐰𝐚𝐧𝐭 𝐭𝐨 𝐩𝐥𝐚𝐲 𝐚𝐠𝐚𝐢𝐧?")
+                        Play_Again = input("𝐃𝐨 𝐲𝐨𝐮 𝐰𝐚𝐧𝐭 𝐭𝐨 𝐩𝐥𝐚𝐲 𝐚𝐠𝐚𝐢𝐧?( Yes or no ) :- ")
+                        if Play_Again == "Yes":
+                            Kit_Battle()
                         break
                     elif BaseHealth < 0:
                         BaseHealth = Kit_Fixed_Health
                         print("Opponent wins")
                         print("Better luck next time")
-                        print("𝐃𝐨 𝐲𝐨𝐮 𝐰𝐚𝐧𝐭 𝐭𝐨 𝐩𝐥𝐚𝐲 𝐚𝐠𝐚𝐢𝐧?")
+                        Play_Again = input("𝐃𝐨 𝐲𝐨𝐮 𝐰𝐚𝐧𝐭 𝐭𝐨 𝐩𝐥𝐚𝐲 𝐚𝐠𝐚𝐢𝐧?( Yes or no ) :- ")
+                        if Play_Again == "Yes":
+                            Kit_Battle()
                         Kit_Trophies += 3
                         break
             print("***************************************************************")
@@ -409,3 +428,18 @@ while(1):
         Profile()
     else:
         print("Please enter code that is available")
+        
+        '''
+           Done on 30/11/2023
+           Play again 
+        
+        '''
+        
+        
+        
+        
+        
+        
+        
+        
+        
