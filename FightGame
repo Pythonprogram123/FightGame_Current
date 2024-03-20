@@ -1,4 +1,5 @@
 import random
+
 MatchCount = int(0)
 Kit_Fixed_Health = int(1237)
 WinMatch = int(0)
@@ -7,23 +8,23 @@ TrophyCount = int(0)
 TrophyMin2 = int(2)
 TrophyMin3 = int(3)
 Coins = int(1000)
-Gems = int(0)
 Upgrade = int(0)
-Drone = int(0)
 Solo = int(0)
 Beat_the_Boss = int(0)
 Kit_Upgrade = int(0)
-ChocoRobo_Upgrade = False
-WinMatch = int(0)
+
+# Mastery
+Mastery_Kit = int(199)
+Mastery_First_Target = int(200)
+Mastery_Second_Target = int(500)
 # Player Variables
 # Opponent
 OpponentHealth = int(2800)
-Opponent_Protect = int(0)
 OpponentDam = int(100)
-OpponentSpecial = int(300)
+OpponentShoot = int(150)
+OpponentSpecial = int(210)
 # Kit
 # Verify
-Kit_Kick_Times = int(0)
 Kit_Gun_Times = int(0)
 Kit_Heal_Times = int(0)
 # Battle
@@ -31,230 +32,244 @@ BaseHealth = int(1237)
 Kit_Unlock = int(1)
 Kit_Select = int(1)
 Kit_Trophies = int(0)
-# ChocoRobo
-# Verify
-ChocoRobo_Attack_Times = int(0)
-ChocoRobo_Spin_Times = int(0)
-ChocoRobo_Heal_Times = int(0)
-# Battle
-ChocoRobo_Unlock = int(0)
-Select_ChocoRobo = int(1)
-ChocoRobo_BaseHealth = 1654
-ChocoRobo_Attack = 170
-ChocoRobo_Heal = 130
-ChocoRobo_Spin = 300
-CRobo_Trophies = int(0)
-CRobo_Unlock = int(0)
-# Marg
-Marg = int(0)
-Marg_BaseHealth = (3500)
-Marg_Select = int(0)
-Marg_Punch = int(75*2)
-Marg_Defend = int(100)
-Marg_Supplex = int(500)
-Marg_Trophies = int(0)
-Marg_Unlock = int(0)
-# Screwbot
-ScrewBot_Fixed_Health = int(1476)
-ScrewBot_BaseHealth = int(1476)
-ScrewBot_Select = int(0)
-ScrewBot = int(1)
-ScrewBot_Attack = int(130)
-ScrewBot_Spotted = int(200)
-Damage_Reduction = int(70)
-Spotted = int(0)
-Spotted_DamageBoost = int(90)
-ScrewBot_Trophies = int(0)
-ScrewBot_DefensiveShield = int(70)
 # Boss
 Boss_Attack = int(300)
 Bad_Boss_Health = int(10000)
 Total_Boss_Health = int(10000)
+
+
 # Functions
-# Battle 
+# Battle
 
 def Kit_Battle():
-    global WinMatch, Kit_Trophies, TrophyCount, Coins, GunShotHealth, AttackHealth, HealHealth, Kickhealth, LossMatch
-    OpponentHealth = 1200
+    global WinMatch, Kit_Trophies, TrophyCount, Coins, GunShotHealth, AttackHealth, HealHealth, LossMatch, MatchCount, Mastery_Kit, Mastery_First_Target, Mastery_Second_Target
     if Kit_Select == 1:
-        BaseHealth = 1237
-        OpponentHealth = 1000
-        print("Your Opponent Health = ", OpponentHealth)
-        print("Your Health = ", BaseHealth)
+        MatchCount += 1
+        base_health = 1237
+        opponent_health = 1000
+        print("Your Opponent Health = ", opponent_health)
+        print("Your Health = ", base_health)
         print("Commands to fight with Kit")
         print("1 = Attack")
         print("2 = Heal")
-        print("3 = Kick")
-        print("4 = Gun")
-        while(1):
+        print("3 = Gun")
+        while 1:
             ChoiceFight = int(input())
             if ChoiceFight == 1:
-                    AttackHealth = random.randint(40,120)
-                    OpponentHealth = OpponentHealth - AttackHealth
-                    print("Opponent health = ", OpponentHealth, "-", AttackHealth)
-                    print("Your Health = ", BaseHealth)
-                    if OpponentHealth < 0 or OpponentHealth == 0:
-                        BaseHealth = Kit_Fixed_Health
-                        OpponentHealth = 1200
-                        print("You wins")
-                        Kit_Trophies += 8
-                        WinMatch = int(WinMatch + 1)
-                        TrophyCount = int(TrophyCount + 8)
-                        Coins = int(Coins + 100)
-                        Play_Again = input("𝐃𝐨 𝐲𝐨𝐮 𝐰𝐚𝐧𝐭 𝐭𝐨 𝐩𝐥𝐚𝐲 𝐚𝐠𝐚𝐢𝐧?( Yes or no ) :- ")
-                        if Play_Again == "Yes":
-                            Kit_Battle()
-                            Kit_Battle()
+                AttackHealth = random.randint(40, 120)
+                opponent_health = opponent_health - AttackHealth
+                print("Opponent health = ", opponent_health, "-", AttackHealth)
+                print("Your Health = ", base_health)
+                if opponent_health < 0 or opponent_health == 0:
+                    base_health = Kit_Fixed_Health
+                    opponent_health = 1200
+                    print("You wins")
+                    Kit_Trophies += 8
+                    Mastery_Kit += 10
+                    print("Kit Trophies :- ", Kit_Trophies)
+                    if Mastery_Kit > Mastery_First_Target:
+                        print("Mastery Tier 1 Completed !!!!!!")
+                        Coins += 500
+                        print("Kit Mastery :- ", Mastery_Kit, '/', Mastery_Second_Target)
+                    else:
+                        print("Kit Mastery :- ", Mastery_Kit, '/', Mastery_First_Target)
+                    WinMatch = int(WinMatch + 1)
+                    TrophyCount = int(TrophyCount + 8)
+                    Coins = int(Coins + 100)
+                    Play_Again = int(input("𝐃𝐨 𝐲𝐨𝐮 𝐰𝐚𝐧𝐭 𝐭𝐨 𝐩𝐥𝐚𝐲 𝐚𝐠𝐚𝐢𝐧?( 1 for Yes or 2 for no ) :- "))
+                    if Play_Again == 1:
+                        Kit_Battle()
+                    else:
                         break
-                    elif BaseHealth < 0:
-                        BaseHealth = Kit_Fixed_Health
-                        print("Opponent wins")
-                        print("Better luck next time")
-                        Play_Again = input("𝐃𝐨 𝐲𝐨𝐮 𝐰𝐚𝐧𝐭 𝐭𝐨 𝐩𝐥𝐚𝐲 𝐚𝐠𝐚𝐢𝐧?( Yes or no ) :- ")
-                        if Play_Again == "Yes":
-                            Kit_Battle()
-                        Kit_Trophies += 3
+
+                elif base_health < 0:
+                    base_health = Kit_Fixed_Health
+                    print("Opponent wins")
+                    print("Better luck next time")
+                    Kit_Trophies += 3
+                    Play_Again = int(input("𝐃𝐨 𝐲𝐨𝐮 𝐰𝐚𝐧𝐭 𝐭𝐨 𝐩𝐥𝐚𝐲 𝐚𝐠𝐚𝐢𝐧?( 1 for Yes or 2 for no ) :- "))
+                    if Play_Again == 1:
+                        Kit_Battle()
+                    else:
                         break
             elif ChoiceFight == 2:
-                    HealHealth = random.randint(80,110)
-                    print("Healing.........")
-                    BaseHealth = BaseHealth + HealHealth
-                    print("Opponent health = ", OpponentHealth)
-                    print("Your health = ", BaseHealth, "+", HealHealth)
-                    if OpponentHealth < 0:
-                        BaseHealth = Kit_Fixed_Health
-                        OpponentHealth = 1200
-                        print("You wins")
-                        Kit_Trophies += 8
-                        WinMatch = int(WinMatch + 1)
-                        TrophyCount = int(TrophyCount + 8)
-                        Coins = int(Coins + 100)
-                        Play_Again = input("𝐃𝐨 𝐲𝐨𝐮 𝐰𝐚𝐧𝐭 𝐭𝐨 𝐩𝐥𝐚𝐲 𝐚𝐠𝐚𝐢𝐧?( Yes or no ) :- ")
-                        if Play_Again == "Yes":
-                            Kit_Battle()
+                HealHealth = random.randint(80, 110)
+                print("Healing.........")
+                base_health = base_health + HealHealth
+                print("Opponent health = ", opponent_health)
+                print("Your health = ", base_health, "+", HealHealth)
+                if opponent_health < 0 or opponent_health == 0:
+                    base_health = Kit_Fixed_Health
+                    opponent_health = 1200
+                    print("You wins")
+                    Kit_Trophies += 8
+                    Mastery_Kit += 10
+                    print("Kit Trophies :- ", Kit_Trophies)
+                    if Mastery_Kit > Mastery_First_Target:
+                        print("Mastery Tier 1 Completed !!!!!!")
+                        Coins += 500
+                        print("Kit Mastery :- ", Mastery_Kit, '/', Mastery_Second_Target)
+                    else:
+                        print("Kit Mastery :- ", Mastery_Kit, '/', Mastery_First_Target)
+                    WinMatch = int(WinMatch + 1)
+                    TrophyCount = int(TrophyCount + 8)
+                    Coins = int(Coins + 100)
+                    Play_Again = int(input("𝐃𝐨 𝐲𝐨𝐮 𝐰𝐚𝐧𝐭 𝐭𝐨 𝐩𝐥𝐚𝐲 𝐚𝐠𝐚𝐢𝐧?( 1 for Yes or 2 for no ) :- "))
+                    if Play_Again == 1:
+                        Kit_Battle()
+                    else:
                         break
-                    elif BaseHealth < 0:
-                        BaseHealth = Kit_Fixed_Health
-                        print("Opponent wins")
-                        print("Better luck next time")
-                        Play_Again = input("𝐃𝐨 𝐲𝐨𝐮 𝐰𝐚𝐧𝐭 𝐭𝐨 𝐩𝐥𝐚𝐲 𝐚𝐠𝐚𝐢𝐧?( Yes or no ) :- ")
-                        if Play_Again == "Yes":
-                            Kit_Battle()
-                        Kit_Trophies += 3
+                elif base_health < 0:
+                    base_health = Kit_Fixed_Health
+                    print("Opponent wins")
+                    print("Better luck next time")
+                    Play_Again = int(input("𝐃𝐨 𝐲𝐨𝐮 𝐰𝐚𝐧𝐭 𝐭𝐨 𝐩𝐥𝐚𝐲 𝐚𝐠𝐚𝐢𝐧?( 1 for Yes or 2 for no ) :- "))
+                    if Play_Again == 1:
+                        Kit_Battle()
+                    else:
                         break
             elif ChoiceFight == 3:
-                    Kickhealth = random.randint(134,189)
-                    OpponentHealth = OpponentHealth - Kickhealth
-                    print("Opponent health = ", OpponentHealth, "-", Kickhealth)
-                    print("Your Health = ", BaseHealth)
-                    if OpponentHealth < 0:
-                        BaseHealth = Kit_Fixed_Health
-                        OpponentHealth = 1200
-                        print("You wins")
-                        Kit_Trophies += 8
-                        WinMatch = int(WinMatch + 1)
-                        TrophyCount = int(TrophyCount + 8)
-                        Coins = int(Coins + 100)
-                        Play_Again = input("𝐃𝐨 𝐲𝐨𝐮 𝐰𝐚𝐧𝐭 𝐭𝐨 𝐩𝐥𝐚𝐲 𝐚𝐠𝐚𝐢𝐧?( Yes or no ) :- ")
-                        if Play_Again == "Yes":
-                            Kit_Battle()
-                        
-                    elif BaseHealth < 0:
-                        BaseHealth = Kit_Fixed_Health
-                        print("Opponent wins")
-                        print("Better luck next time")
-                        Play_Again = input("𝐃𝐨 𝐲𝐨𝐮 𝐰𝐚𝐧𝐭 𝐭𝐨 𝐩𝐥𝐚𝐲 𝐚𝐠𝐚𝐢𝐧?( Yes or no ) :- ")
-                        if Play_Again == "Yes":
-                            Kit_Battle()
-                        
-                        Kit_Trophies += 3
+                GunShotHealth = random.randint(175, 225)
+                opponent_health = opponent_health - GunShotHealth
+                print("Opponent health = ", opponent_health, "-", GunShotHealth)
+                print("Your health = ", base_health)
+                if opponent_health < 0 or opponent_health == 0:
+                    base_health = Kit_Fixed_Health
+                    opponent_health = 1200
+                    print("You wins")
+                    Kit_Trophies += 8
+                    Mastery_Kit += 10
+                    print("Kit Trophies :- ", Kit_Trophies)
+                    if Mastery_Kit > Mastery_First_Target:
+                        print("Mastery Tier 1 Completed !!!!!!")
+                        Coins += 500
+                        print("Kit Mastery :- ", Mastery_Kit, '/', Mastery_Second_Target)
+                    else:
+                        print("Kit Mastery :- ", Mastery_Kit, '/', Mastery_First_Target)
+                    WinMatch = int(WinMatch + 1)
+                    TrophyCount = int(TrophyCount + 8)
+                    Coins = int(Coins + 100)
+                    Play_Again = int(input("𝐃𝐨 𝐲𝐨𝐮 𝐰𝐚𝐧𝐭 𝐭𝐨 𝐩𝐥𝐚𝐲 𝐚𝐠𝐚𝐢𝐧?( 1 for Yes or 2 for no ) :- "))
+                    if Play_Again == 1:
+                        Kit_Battle()
+                    else:
                         break
-            elif ChoiceFight == 4:
-                    GunShotHealth = random.randint(175,225)
-                    OpponentHealth = OpponentHealth - GunShotHealth
-                    print("Opponent health = ", OpponentHealth, "-", GunShotHealth)
-                    print("Your health = ", BaseHealth)
-                    if OpponentHealth < 0:
-                        print("You wins")
-                        BaseHealth = Kit_Fixed_Health
-                        OpponentHealth = 1200
-                        Kit_Trophies += 8
-                        WinMatch = int(WinMatch + 1)
-                        TrophyCount = int(TrophyCount + 8)
-                        Coins = int(Coins + 100)
-                        Play_Again = input("𝐃𝐨 𝐲𝐨𝐮 𝐰𝐚𝐧𝐭 𝐭𝐨 𝐩𝐥𝐚𝐲 𝐚𝐠𝐚𝐢𝐧?( Yes or no ) :- ")
-                        if Play_Again == "Yes":
-                            Kit_Battle()
-                        break
-                    elif BaseHealth < 0:
-                        BaseHealth = Kit_Fixed_Health
-                        print("Opponent wins")
-                        print("Better luck next time")
-                        Play_Again = input("𝐃𝐨 𝐲𝐨𝐮 𝐰𝐚𝐧𝐭 𝐭𝐨 𝐩𝐥𝐚𝐲 𝐚𝐠𝐚𝐢𝐧?( Yes or no ) :- ")
-                        if Play_Again == "Yes":
-                            Kit_Battle()
-                        Kit_Trophies += 3
+                elif base_health < 0:
+                    base_health = Kit_Fixed_Health
+                    print("Opponent wins")
+                    print("Better luck next time")
+                    Play_Again = int(input("𝐃𝐨 𝐲𝐨𝐮 𝐰𝐚𝐧𝐭 𝐭𝐨 𝐩𝐥𝐚𝐲 𝐚𝐠𝐚𝐢𝐧?( 1 for Yes or 2 for no ) :- "))
+                    if Play_Again == 1:
+                        Kit_Battle()
+                    else:
                         break
             print("***************************************************************")
             print("***************************************************************")
             print("Opponents Turn")
-            Opponent_Turn = random.randrange(2, 4)
+            Opponent_Turn = random.randrange(1, 4)
             if Opponent_Turn == 2:
                 print("He attacks")
-                BaseHealth = BaseHealth - OpponentDam
-                print("Opponent health = ", OpponentHealth)
-                print('Your Health = ', BaseHealth, '-', OpponentDam)
+                base_health = base_health - OpponentDam
+                print("Opponent health = ", opponent_health)
+                print('Your Health = ', base_health, '-', OpponentDam)
+                if base_health < 0:
+                    base_health = Kit_Fixed_Health
+                    print("Opponent wins")
+                    print("Better luck next time")
+                    Play_Again = int(input("𝐃𝐨 𝐲𝐨𝐮 𝐰𝐚𝐧𝐭 𝐭𝐨 𝐩𝐥𝐚𝐲 𝐚𝐠𝐚𝐢𝐧?( 1 for Yes or 2 for no ) :- "))
+                    if Play_Again == 1:
+                        Kit_Battle()
+                    else:
+                        break
+            elif Opponent_Turn == 1:
+                print("He Shoots")
+                base_health -= OpponentShoot
+                print("Opponent health = ", opponent_health)
+                print('Your Health = ', base_health, '-', OpponentDam)
+                if base_health < 0:
+                    base_health = Kit_Fixed_Health
+                    print("Opponent wins")
+                    print("Better luck next time")
+                    Play_Again = int(input("𝐃𝐨 𝐲𝐨𝐮 𝐰𝐚𝐧𝐭 𝐭𝐨 𝐩𝐥𝐚𝐲 𝐚𝐠𝐚𝐢𝐧?( 1 for Yes or 2 for no ) :- "))
+                    if Play_Again == 1:
+                        Kit_Battle()
+                    else:
+                        break
             else:
                 print("He Used Oppo_Special")
-                BaseHealth = BaseHealth - OpponentSpecial
-                print("Opponent health = ", OpponentHealth)
-                print('Your Health = ', BaseHealth, '-', OpponentSpecial)
+                base_health = base_health - OpponentSpecial
+                print("Opponent health = ", opponent_health)
+                print('Your Health = ', base_health, '-', OpponentSpecial)
+                if base_health < 0:
+                    base_health = Kit_Fixed_Health
+                    print("Opponent wins")
+                    print("Better luck next time")
+                    Play_Again = int(input("𝐃𝐨 𝐲𝐨𝐮 𝐰𝐚𝐧𝐭 𝐭𝐨 𝐩𝐥𝐚𝐲 𝐚𝐠𝐚𝐢𝐧?( 1 for Yes or 2 for no ) :- "))
+                    if Play_Again == 1:
+                        Kit_Battle()
+                    else:
+                        break
+
+
 def Profile():
-    print("Matches : ",MatchCount)
+    print("Matches : ", MatchCount)
     print("Wins : ", WinMatch)
     print("Total trophies : ", TrophyCount)
     print("Coins : ", Coins)
-    print("Tokens : ", Tokens)
+
+
 def Rules():
     print("Your Code must contain '?' along with code ex :- ?coins etc")
     print("Your Code must be in lowercase")
     print("Your if bug contact us by telling in NFUM")
     print("Enjoy our Game Daily or Weekly Maintenance Break")
-    print("If you need help for commands type ?help")    
+    print("If you need help for commands type ?help")
+
+
 def Match():
     print("Total wins : ", WinMatch)
     print("Total matches played : ", MatchCount)
+
+
 # Battle Command with other players, declared function for different players
 
 # Other Command rather than Battle command
-def Profile():
+'''def Profile():
     # print("ChocoRobo Trophies : ", CRobo_Trophies)
     # print("Kit Trophies : ", Kit_Trophies)
-    print("Matches : ",MatchCount)
+    print("Matches : ", MatchCount)
     print("Wins : ", WinMatch)
     print("Total trophies : ", TrophyCount)
     print("Coins : ", Coins)
+
+
 def Rules():
     print("Your Code must contain '?' along with code ex :- ?coins etc")
     print("Your Code must be in lowercase")
-    print("If you need help for commands type ?help")    
+    print("If you need help for commands type ?help")'''
+
+
 def Win_Match():
     print("Total wins : ", WinMatch)
     print('Total Matches Played : ', MatchCount)
 # Battle Command with other players, declared function for different players
+
+
 def Help():
-        print("?battle , For battling your opponent and gain money")
-        print("?trophies , For Checking your trophies")
-        print("?shop , For buying items i.e :- Upgrade and Drone")
-        print("?rules , To know about this game and more")
-        print("?player , To unlock player")
-        print("?profile, To see your profile such as Battles played, battles won etc")
+    print("?battle , For battling your opponent and gain money")
+    print("?trophies , For Checking your trophies")
+    print("?shop , For buying items i.e :- Upgrade and Drone")
+    print("?rules , To know about this game and more")
+    print("?player , To unlock player")
+    print("?profile, To see your profile such as Battles played, battles won etc")
+
+
 def Playerinfo():
     print("-select <playername>")
     if Kit_Unlock == 1:
         print("Kit Trophies :- ", Kit_Trophies)
     Choice_Select_Player = input("Enter your Choice : ")
-    if Choice_Select_Player == "-select ChocoRobo":
+    '''if Choice_Select_Player == "-select ChocoRobo":
         if ChocoRobo_Unlock == 0:
             print("You doesnt bought ChocoRobo")
         elif ChocoRobo == 1:
@@ -262,14 +277,12 @@ def Playerinfo():
             Kit_Select -= 1
             Marg_Select -= 1
             ScrewBot_Select -= 1
-            print("ChocoRobo Selected")
-    elif Choice_Select_Player == "-select Kit":
+            print("ChocoRobo Selected")'''
+    if Choice_Select_Player == "-select Kit":
+        Kit_Select = 0
         Kit_Select += 1
-        Select_ChocoRobo -= 1
-        Marg_Select -= 1
-        ScrewBot_Select -= 1
         print("Kit Selected")
-    elif Choice_Select_Player == "-select Marg" and TrophyCount > 50:
+    '''elif Choice_Select_Player == "-select Marg" and TrophyCount > 50:
         Marg_Select += 1
         Kit_Select -= 1
         Select_ChocoRobo -= 1
@@ -284,119 +297,19 @@ def Playerinfo():
             print("Screw Bot Selected")
         else:
             print("Enter correct Choice")
+'''
+
+
 def Shop():
     print("          Today,s Shop")
     print("1 = Drone : 150")
     print("2 = Upgrade : 100")
     print("3 = ChocoRobo : 250")
-    Shop_Choice = input("Enter your Choice : ")
-    if Shop_Choice == "1":
-        print("Drone,it cost 150 coins Do you want to buy")
-        Choice_Drone_Buy = input("Yes or no : ")
-        if Choice_Drone_Buy == "Yes" or "yes":
-            if Coins >= 150:
-                print("Successfully bought and you need to remember this code CrshtyAD or Copy it to verify and paste in the battle ")
-            else:
-                print("you does't have money to buy drone")
-        elif Choice_Drone_Buy == "no" or "No":
-            print("Buy whenever you want")
-        else:
-            print("Use correct options")
-    elif Shop_Choice == "2":
-        Charater_Upgrade = input("Which Player you need to upgrade : ")
-        if Charater_Upgrade == "ChocoRobo" and Coins >= 100 and ChocoRobo == 1:
-            print("Upgrading....")
-            ChocoRobo_Upgrade = True
-            print("Upgraded ChocoRobo")
-            Coins -= 100
-        elif Coins <= 100:
-            print("You doesn't have money")
-        elif ChocoRobo == 0:
-            print("YOu doesn't buy ChocoRobo")
-    elif Shop_Choice == "3":
-        print("Do you want to buy ChocoRobo")
-        YorN = input("Yes or no : ")
-        if YorN == "yes" or "Yes" and Coins >= 250 or Coins == 250:
-            print("You purchased ChocoRobo")
-            ChocoRobo = ChocoRobo + 1
-            Coins -= 250
-    else:
-        print("Use Correct options")
+
+
 def Trophies():
-    print("Total trophies : ",TrophyCount)
-def Playerinfo():
-    if Kit_Unlock == 1:
-        print("Kit Trophies :- ", Kit_Trophies)
-        print("-select <playername>")
-        Choice_Select_Player = input("Enter your Choice : ")
-        if Choice_Select_Player == "-select ChocoRobo":
-            if ChocoRobo == 0:
-                print("You doesnt unlocked ChocoRobo yet")
-            elif ChocoRobo == 1:
-                Select_ChocoRobo += 1
-                Kit_Select -= 1
-                Marg_Select -= 1
-                ScrewBot_Select -= 1
-                print("ChocoRobo Selected")
-        elif Choice_Select_Player == "-select Kit":
-            Kit_Select += 1
-            Select_ChocoRobo -= 1
-            Marg_Select -= 1
-            ScrewBot_Select -= 1
-            print("Kit Selected")
-        elif Choice_Select_Player == "-select Marg" and TrophyCount > 50:
-            Marg_Select += 1
-            Kit_Select -= 1
-            Select_ChocoRobo -= 1
-            print('Marg Selected')
-            if TrophyCount < 50:
-                print("Your Trophy Must greater than 50 to unlock Marg")
-            elif Choice_Select_Player == "-select Screwbot" and ScrewBot == 1:
-                ScrewBot_Select += 1
-                Kit_Select -= 1
-                Select_ChocoRobo -= 1
-                Marg_Select -= 1
-                print("Screw Bot Selected")
-            else:
-                print("Enter correct Choice")
-def Shop():
-    print("          Today,s Shop")
-    print("1 = Drone : 150")
-    print("2 = Upgrade : 100")
-    print("3 = ChocoRobo : 250")
-    Shop_Choice = input("Enter your Choice : ")
-    if Shop_Choice == "1":
-        print("Drone,it cost 150 coins Do you want to buy")
-        Choice_Drone_Buy = input("Yes or no : ")
-        if Choice_Drone_Buy == "Yes" or "yes":
-            if Coins >= 150:
-                print("Successfully bought and you need to remember this code CrshtyAD or Copy it to verify and paste in the battle ")
-            else:
-                print("you does't have money to buy drone")
-        elif Choice_Drone_Buy == "no" or "No":
-            print("Buy whenever you want")
-        else:
-            print("Use correct options")
-    elif Shop_Choice == "2":
-        Charater_Upgrade = input("Which Player you need to upgrade : ")
-        if Charater_Upgrade == "ChocoRobo" and Coins >= 100 and ChocoRobo == 1:
-            print("Upgrading....")
-            ChocoRobo_Upgrade = True
-            print("Upgraded ChocoRobo")
-            Coins -= 100
-        elif Coins <= 100:
-            print("You doesn't have money")
-        elif ChocoRobo == 0:
-            print("YOu doesn't buy ChocoRobo")
-    elif Shop_Choice == "3":
-        print("Do you want to buy ChocoRobo")
-        YorN = input("Yes or no : ")
-        if YorN == "yes" or "Yes" and Coins >= 250 or Coins == 250:
-            print("You purchased ChocoRobo")
-            ChocoRobo = ChocoRobo + 1
-            Coins -= 250
-    else:
-        print("Use Correct options")
+    print("Total trophies : ", TrophyCount)
+
 
 print("                              ꧁ঔৣ☬𝓕𝓘𝓖𝓗𝓣☬ঔৣ꧂")
 print("===================================================================================")
@@ -404,20 +317,18 @@ print("Hi Welcome to Fighting Game 1v1 battle")
 print("If you need help please type ?rules for more info")
 print("Your Starting player is Kit!!!!")
 print("Use ?player command and select Kit to play battles")
-while(1):
+while 1:
     Choice = input(">> ")
     if Choice == "?help":
         Help()
     elif Choice == "?player":
         Playerinfo()
     elif Choice == "?battle":
-        OpponentHealth = random.randrange(999,1200)
+        OpponentHealth = random.randrange(999, 1200)
         if Kit_Select == 1:
             Kit_Battle()
         else:
             print("First Select Unlocked Character")
-    elif Choice == "?shop":
-        Shop()
     elif Choice == "?trophies":
         Trophies()
     elif Choice == "?match":
@@ -426,20 +337,7 @@ while(1):
         Rules()
     elif Choice == "?profile":
         Profile()
+    elif Choice == "?shop":
+        Shop()
     else:
         print("Please enter code that is available")
-        
-        '''
-           Done on 30/11/2023
-           Play again 
-        
-        '''
-        
-        
-        
-        
-        
-        
-        
-        
-        
